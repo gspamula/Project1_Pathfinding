@@ -9,7 +9,8 @@ Run:  python benchmark.py            (default 300 maps per movement mode)
 Writes results/benchmark_results.csv and results/benchmark_results.md.
 Dijkstra is the "ground truth" because it always finds the cheapest path.
 
-AI use: written with help from Claude (Anthropic). See "AI Use" in README.md.
+AI use: this project is being developed through chats with Claude (Anthropic).
+See "AI Use" in README.md. Saved chat logs showing how we worked: AI_CHAT_LOGS.md.
 """
 
 import argparse
@@ -54,6 +55,12 @@ def random_problem(rng, diagonal):
 
 
 def run(maps, seed):
+    """Run every config on `maps` solvable maps per movement mode; return one summary row each.
+
+    Every config runs on the exact same maps, so the numbers compare the
+    methods and not the luck of the map. Reusing the seed for both movement
+    modes also makes the 4 way and 8 way experiments use the same map layouts.
+    """
     rows = []
     for diagonal in (False, True):
         rng = random.Random(seed)
@@ -73,6 +80,8 @@ def run(maps, seed):
                 s["ms"].append(r.elapsed_ms)
                 s["max_open"].append(r.max_frontier)
                 s["ratio"].append(r.cost / truth.cost)
+                # Compare with a tolerance: diagonal costs are sums of sqrt(2),
+                # so two equally cheap paths can differ in the last few digits.
                 if abs(r.cost - truth.cost) < 1e-9:
                     s["optimal"] += 1
 
@@ -95,6 +104,7 @@ def run(maps, seed):
 
 
 def write(rows, maps, seed):
+    """Save the rows to results/ as CSV (for spreadsheets) and Markdown (for reading), then print them."""
     os.makedirs("results", exist_ok=True)
     with open("results/benchmark_results.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))

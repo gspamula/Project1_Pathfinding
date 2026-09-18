@@ -11,7 +11,8 @@ Having a terrain cost other than 1 is what makes this project interesting:
 breadth first search ignores cost, so it can walk straight through mud,
 while Dijkstra and A* go around it when that is cheaper.
 
-AI use: written with help from Claude (Anthropic). See "AI Use" in README.md.
+AI use: this project is being developed through chats with Claude (Anthropic).
+See "AI Use" in README.md. Saved chat logs showing how we worked: AI_CHAT_LOGS.md.
 """
 
 import math

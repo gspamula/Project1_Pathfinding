@@ -1,7 +1,8 @@
 """
 Edge case and correctness tests. Run with:  python -m pytest
 
-AI use: written with help from Claude (Anthropic). See "AI Use" in README.md.
+AI use: this project is being developed through chats with Claude (Anthropic).
+See "AI Use" in README.md. Saved chat logs showing how we worked: AI_CHAT_LOGS.md.
 """
 
 import math
@@ -61,7 +62,7 @@ def test_astar_avoids_mud_but_bfs_does_not():
     bfs = run_search(g, (0, 0), (6, 0), "BFS")
     astar = run_search(g, (0, 0), (6, 0), "A*", manhattan)
     assert astar.cost < bfs.cost
-    assert astar.cost == 8          # detour through row 2 (8 open steps)
+    assert astar.cost == 8          # detour through the bottom row (8 open steps)
     assert bfs.cost == 6 + MUD_COST - 1  # straight through the mud
 
 

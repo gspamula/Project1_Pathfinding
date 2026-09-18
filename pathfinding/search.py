@@ -30,7 +30,8 @@ The search is written as a Python GENERATOR. Each time it expands a cell it
 `yield`s a SearchStep, so the PyGame visualizer can draw the search one step
 at a time. `run_search` just runs the generator to the end for the benchmark.
 
-AI use: written with help from Claude (Anthropic). See "AI Use" in README.md.
+AI use: this project is being developed through chats with Claude (Anthropic).
+See "AI Use" in README.md. Saved chat logs showing how we worked: AI_CHAT_LOGS.md.
 """
 
 import heapq

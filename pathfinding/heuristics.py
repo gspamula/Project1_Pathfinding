@@ -32,7 +32,8 @@ Which heuristic is admissible depends on how the agent may move:
     octile      | admissible, weak       | admissible, EXACT fit
     tiebreak    | ~admissible            | ~admissible (tiny nudge, see below)
 
-AI use: written with help from Claude (Anthropic). See "AI Use" in README.md.
+AI use: this project is being developed through chats with Claude (Anthropic).
+See "AI Use" in README.md. Saved chat logs showing how we worked: AI_CHAT_LOGS.md.
 """
 
 import math
